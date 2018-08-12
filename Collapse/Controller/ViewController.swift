@@ -38,7 +38,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource, Expandable
         return sections.count
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return sections[section].movies.count
+        return sections[section].currency_Rate.count
     }
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 44
@@ -55,12 +55,12 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource, Expandable
     }
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = ExpandableHeaderView()
-        header.customInit(title: sections[section].genre, section: section, delegate: self)
+        header.customInit(title: sections[section].money, section: section, delegate: self)
         return header
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "labelCell")!
-        cell.textLabel?.text = sections[indexPath.section].movies[indexPath.row]
+        cell.textLabel?.text = sections[indexPath.section].currency_Rate[indexPath.row]
         self.indicator.stopAnimating()
         return cell
     }
@@ -69,7 +69,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource, Expandable
         sections[section].expanded = !sections[section].expanded
         
         tableView.beginUpdates()
-        for i in 0..<sections[section].movies.count {
+        for i in 0..<sections[section].currency_Rate.count {
             tableView.reloadRows(at: [IndexPath(row: i, section: section)], with: .automatic)
         }
         tableView.endUpdates()
